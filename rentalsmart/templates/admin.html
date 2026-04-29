@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel RENTAL SMART</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Admin Specific Overrides */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .admin-title h1 { margin-bottom: 0.5rem; }
+        
+        .search-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        #adminSearch {
+            padding-left: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+        
+        .table-card {
+            padding: 1rem 0; /* No horizontal padding for table */
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .btn-detail {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-detail:hover {
+            background: var(--primary);
+            color: var(--bg);
+        }
+        
+        .action-group {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-export {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            background: var(--border);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-export:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .btn-export.json { border-left: 3px solid var(--primary); }
+
+        /* Modal Details */
+        .modal-detail-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .modal-detail-header h2 { color: var(--primary); font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; }
+        .detail-badges { display: flex; gap: 0.8rem; margin-top: 1rem; }
+        .badge-date { background: var(--border); color: var(--text-dim); }
+        
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .detail-item label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
+        .detail-item p { font-size: 1.1rem; font-weight: 500; }
+        
+        .detail-section { margin-bottom: 2rem; }
+        .detail-section label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .ai-analysis-section { background: rgba(121, 40, 202, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(121, 40, 202, 0.2); }
+        .ai-analysis-section h3 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: #a855f7; }
+    </style>
+</head>
+<body class="admin-body">
+    <div class="glass-bg"></div>
+    <div class="container" style="max-width: 1200px;">
+        <header class="admin-header">
+            <div class="admin-title">
+                <div class="logo">
+                    <h1 class="logo-text"><span class="highlight">RENTAL</span> SMART</h1>
+                </div>
+                <p class="subtitle">Monitoramento de Diagnósticos Tributários</p>
+            </div>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="adminSearch" placeholder="Buscar por empresa, responsável ou e-mail...">
+            </div>
+
+            <div class="action-group">
+                <a href="/admin/export" class="btn-export">
+                    <span>📄</span> CSV
+                </a>
+                <a href="/admin/export/json" class="btn-export json">
+                    <span>📦</span> JSON
+                </a>
+            </div>
+        </header>
+
+        <div class="card glass table-card">
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Empresa</th>
+                            <th>Responsável</th>
+                            <th>Contato</th>
+                            <th>Faturamento Anual</th>
+                            <th>Recomendação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lead in leads %}
+                        <tr>
+                            <td>{{ lead.timestamp.strftime('%d/%m/%y %H:%M') }}</td>
+                            <td>
+                                <strong>{{ lead.razao_social }}</strong>
+                            </td>
+                            <td>{{ lead.nome_responsavel }}</td>
+                            <td>
+                                <small>{{ lead.email }}</small><br>
+                                <small style="color: var(--text-dim);">{{ lead.telefone }}</small>
+                            </td>
+                            <td>R$ {{ "{:,.2f}".format(lead.faturamento_anual).replace(',', 'X').replace('.', ',').replace('X', '.') }}</td>
+                            <td>
+                                <span class="badge {{ 'badge-lr' if 'Lucro Real' in lead.recomendacao_final else 'badge-lp' }}" style="font-size: 0.7rem;">
+                                    {{ lead.recomendacao_final }}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn-detail" onclick="openDetails('{{ lead.id }}')">VER DETALHES</button>
+                                <!-- Lead Data for Modal -->
+                                <script type="application/json" id="data-{{ lead.id }}">
+                                    {
+                                        "id": "{{ lead.id }}",
+                                        "razao_social": "{{ lead.razao_social }}",
+                                        "nome_responsavel": "{{ lead.nome_responsavel }}",
+                                        "email": "{{ lead.email }}",
+                                        "telefone": "{{ lead.telefone }}",
+                                        "endereco_completo": "{{ lead.endereco_completo }}",
+                                        "faturamento_anual": "{{ lead.faturamento_anual }}",
+                                        "custo_manutencao_pecas": "{{ lead.custo_manutencao_pecas }}",
+                                        "folha_pagamento_direta": "{{ lead.folha_pagamento_direta }}",
+                                        "aluguel_despesas_fixas": "{{ lead.aluguel_despesas_fixas }}",
+                                        "depreciacao_ativos": "{{ lead.depreciacao_ativos }}",
+                                        "investimento_ativos": "{{ lead.investimento_ativos }}",
+                                        "recomendacao_final": "{{ lead.recomendacao_final }}",
+                                        "analise_detalhada": {{ lead.analise_detalhada | tojson }},
+                                        "simulacao_json": {{ lead.simulacao_json | tojson if lead.simulacao_json else 'null' }},
+                                        "timestamp": "{{ lead.timestamp.isoformat() }}"
+                                    }
+                                </script>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% if not leads %}
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-dim);">
+                                Nenhum lead capturado até o momento.
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer style="margin-top: 3rem;">
+            <p>&copy; 2026 <strong>Alves Advocacia</strong> - Área Administrativa Restrita.</p>
+        </footer>
+    </div>
+
+    <!-- DETAILS MODAL -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content glass" style="max-width: 800px; margin: 3% auto;">
+            <span class="close-modal close-details">&times;</span>
+            <div id="detailsBody">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='admin_script.js') }}"></script>
+</body>
+</html>
