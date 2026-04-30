@@ -14,11 +14,21 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Configuração do Banco de Dados SQLite
-if os.getenv('VERCEL') == '1':
+# Configuração do Banco de Dados SQLite / PostgreSQL
+db_url = os.getenv('DATABASE_URL')
+if db_url:
+    # SQLAlchemy 1.4+ requires 'postgresql://' instead of 'postgres://'
+    if db_url.startswith("postgres://"):
+        db_url = db_url.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+elif os.getenv('VERCEL') == '1':
+    # ATENÇÃO: No Vercel, o diretório /tmp é temporário (ephemeral). 
+    # Os leads serão apagados logo após serem salvos.
+    # É obrigatório configurar a variável DATABASE_URL no painel do Vercel.
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/leads_v3.db'
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///leads_v3.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///leads_v3.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

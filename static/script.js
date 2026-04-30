@@ -12,6 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let rankingChart = null;
 
+    // Helper function to safely get values
+    const getVal = (id, def = '') => {
+        const el = document.getElementById(id);
+        return el ? el.value : def;
+    };
+
+    const getCheck = (id, def = true) => {
+        const el = document.getElementById(id);
+        return el ? el.checked : def;
+    };
+
     // Dual Slider Logic
     b2bSlider.addEventListener('input', (e) => {
         const val = e.target.value;
@@ -20,9 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Collapse Logic
-    collapseBtn.addEventListener('click', () => {
-        collapseContent.classList.toggle('open');
-    });
+    if (collapseBtn) {
+        collapseBtn.addEventListener('click', () => {
+            if (collapseContent) collapseContent.classList.toggle('open');
+        });
+    }
 
     // Form Submission
     form.addEventListener('submit', async (e) => {
@@ -30,34 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show Loading
         submitBtn.disabled = true;
-        spinner.classList.remove('hidden');
-        btnText.textContent = 'PROCESSANDO...';
+        if (spinner) spinner.classList.remove('hidden');
+        const originalText = btnText ? btnText.textContent : submitBtn.textContent;
+        if (btnText) btnText.textContent = 'PROCESSANDO...';
+        else submitBtn.textContent = 'PROCESSANDO...';
         
         const b2b = parseFloat(b2bSlider.value);
         const b2c = 100 - b2b;
 
         const formData = {
-            nome_empresa: document.getElementById('razao_social').value,
-            nome_responsavel: document.getElementById('nome_responsavel').value,
-            email: document.getElementById('email').value,
-            telefone: document.getElementById('telefone').value,
-            endereco_completo: document.getElementById('endereco_completo').value,
-            consentimento: document.getElementById('consentimento').checked,
-            faturamento_anual: document.getElementById('faturamento_anual').value,
-            custo_manutencao_pecas: document.getElementById('custo_manutencao_pecas').value,
-            folha_pagamento_direta: document.getElementById('folha_pagamento_direta').value,
-            aluguel_despesas_fixas: document.getElementById('aluguel_despesas_fixas').value,
-            depreciacao_ativos: document.getElementById('depreciacao_ativos').value,
-            investimento_anual_em_ativos: document.getElementById('investimento_anual_em_ativos').value,
+            nome_empresa: getVal('razao_social'),
+            nome_responsavel: getVal('nome_responsavel'),
+            email: getVal('email'),
+            telefone: getVal('telefone'),
+            endereco_completo: getVal('endereco_completo'),
+            consentimento: getCheck('consentimento'),
+            faturamento_anual: getVal('faturamento_anual', 0),
+            custo_manutencao_pecas: getVal('custo_manutencao_pecas', 0),
+            folha_pagamento_direta: getVal('folha_pagamento_direta', 0),
+            aluguel_despesas_fixas: getVal('aluguel_despesas_fixas', 0),
+            depreciacao_ativos: getVal('depreciacao_ativos', 0),
+            investimento_anual_em_ativos: getVal('investimento_anual_em_ativos', 0),
             percentual_clientes_b2b: b2b,
             percentual_clientes_b2c: b2c,
-            percentual_clientes_que_aproveitam_credito: document.getElementById('percentual_clientes_que_aproveitam_credito').value,
-            ano: document.getElementById('ano').value,
-            cobertura_geografica: document.getElementById('cobertura_geografica').value,
-            maturidade_sistema_gestao: document.getElementById('maturidade_sistema_gestao').value,
-            maturidade_contabil_fiscal: document.getElementById('maturidade_contabil_fiscal').value,
-            intensidade_contratos_complexos: document.getElementById('intensidade_contratos_complexos').value,
-            necessidade_caixa_curto_prazo: document.getElementById('necessidade_caixa_curto_prazo').value,
+            percentual_clientes_que_aproveitam_credito: getVal('percentual_clientes_que_aproveitam_credito', 0),
+            ano: getVal('ano', 2027),
+            cobertura_geografica: getVal('cobertura_geografica', 'municipal'),
+            maturidade_sistema_gestao: getVal('maturidade_sistema_gestao', 3),
+            maturidade_contabil_fiscal: getVal('maturidade_contabil_fiscal', 3),
+            intensidade_contratos_complexos: getVal('intensidade_contratos_complexos', 3),
+            necessidade_caixa_curto_prazo: getVal('necessidade_caixa_curto_prazo', 3),
         };
 
         try {
@@ -81,8 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Erro no Servidor: ' + error.message);
         } finally {
             submitBtn.disabled = false;
-            spinner.classList.add('hidden');
-            btnText.textContent = 'GERAR DIAGNÓSTICO';
+            if (spinner) spinner.classList.add('hidden');
+            if (btnText) btnText.textContent = originalText;
+            else submitBtn.textContent = originalText;
         }
     });
 
@@ -133,12 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Action Plan
         const list = document.getElementById('actionPlanList');
-        list.innerHTML = '';
-        skill.plano_acao.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            list.appendChild(li);
-        });
+        if (list) {
+            list.innerHTML = '';
+            skill.plano_acao.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
 
         // DRE Comparison Table
         renderDRETable(skill.ranking);
