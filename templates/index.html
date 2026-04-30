@@ -39,6 +39,9 @@
                             500: '#10B981',
                             600: '#059669',
                         }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -46,44 +49,117 @@
     </script>
     <style>
         .glass { background: rgba(31, 41, 55, 0.3); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: linear-gradient(145deg, rgba(31,41,55,0.4) 0%, rgba(17,24,39,0.7) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); }
         .hero-title { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; }
         .gradient-text { background: linear-gradient(135deg, #34D399 0%, #60A5FA 50%, #A855F7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); }
+        .glow-emerald:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.4); transform: translateY(-2px); }
     </style>
 </head>
-<body class="bg-darkblue-950 text-gray-100 font-sans antialiased pt-20">
+<body class="bg-darkblue-950 text-gray-100 font-sans antialiased overflow-x-hidden pt-20">
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 w-full z-50 py-6 px-4 sm:px-6 lg:px-8 border-b border-white/5 bg-darkblue-950/40 backdrop-blur-2xl">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-4 group">
-                <img src="/logo.png" alt="Rental Smart Logo" class="h-14 w-auto transition-transform duration-500 group-hover:scale-110">
+                <div class="relative">
+                    <img src="/logo.png" alt="Rental Smart Logo" class="relative h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                </div>
                 <div class="flex flex-col">
                     <span class="text-2xl font-black hero-title leading-none">Rental<span class="text-emerald-400">Smart</span></span>
                     <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Estratégia IA</span>
                 </div>
             </a>
             <div class="flex items-center gap-6">
-                <a href="https://wa.me/5511998274209" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-darkblue-950 px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all">
+                <a href="#como-funciona" class="hidden md:block text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">O Desafio</a>
+                <a href="https://wa.me/5511998274209" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-darkblue-950 px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-emerald-500/20">
                     Falar com Especialista
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <header class="relative min-h-screen flex items-center justify-center text-center px-4">
-        <div class="max-w-5xl mx-auto z-10">
-            <h1 class="text-6xl sm:text-7xl md:text-8xl font-extrabold hero-title mb-10 leading-tight">
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-20 px-4">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-500/10 blur-[120px] rounded-full animate-pulse-slow"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full animate-pulse-slow" style="animation-delay: 2s"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center z-10">
+            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full glass border-white/10 text-emerald-400 text-xs font-black mb-10 uppercase tracking-[0.2em]">
+                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>
+                Diagnóstico Estratégico IA 2026
+            </div>
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-tighter mb-10 leading-[0.95] hero-title">
                 O futuro do <span class="gradient-text">Rental</span><br>é inteligente.
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-400 max-w-2xl mx-auto mb-16 leading-relaxed">
-                Descubra em segundos como a Reforma Tributária impactará sua locadora em <span class="text-white italic">2026 e 2027</span>.
+            <p class="text-xl sm:text-2xl text-gray-400 max-w-2xl mx-auto mb-16 leading-relaxed font-light">
+                Descubra em segundos como a Reforma Tributária impactará sua locadora em <span class="text-white font-medium italic">2026 e 2027</span>.
             </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="/diagnostico" class="px-12 py-6 bg-emerald-500 hover:bg-emerald-400 text-darkblue-950 rounded-[2rem] font-black text-2xl transition-all shadow-xl shadow-emerald-500/20">
-                    Iniciar Diagnóstico <i class="fa-solid fa-chevron-right ml-2"></i>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="/diagnostico" class="group relative w-full sm:w-auto px-12 py-6 bg-emerald-500 hover:bg-emerald-400 text-darkblue-950 rounded-[2rem] font-black text-2xl transition-all duration-500 glow-emerald transform hover:-translate-y-1 flex items-center justify-center gap-4 overflow-hidden">
+                    Iniciar Diagnóstico <i class="fa-solid fa-chevron-right text-lg"></i>
+                </a>
+                <a href="#como-funciona" class="w-full sm:w-auto px-12 py-6 glass hover:bg-white/5 text-white rounded-[2rem] font-bold text-xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center gap-3">
+                    Saiba Mais
                 </a>
             </div>
         </div>
     </header>
+
+    <!-- Problema/Desafio -->
+    <section id="como-funciona" class="py-24 px-4 bg-darkblue-900/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold hero-title mb-6">O Fim da Era do <span class="text-red-400">Imposto Baixo</span>?</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Com a Reforma Tributária, as empresas de locação enfrentam um risco real de aumento drástico na carga tributária.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-[2rem]">
+                    <i class="fa-solid fa-triangle-exclamation text-emerald-400 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Incerteza Jurídica</h3>
+                    <p class="text-gray-400 leading-relaxed">Novas regras de CBS e IBS mudam completamente a forma como locadoras recuperam créditos.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[2rem]">
+                    <i class="fa-solid fa-chart-line-down text-emerald-400 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Margem em Risco</h3>
+                    <p class="text-gray-400 leading-relaxed">O que era lucro hoje pode virar custo tributário amanhã se a estratégia não for revista.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[2rem]">
+                    <i class="fa-solid fa-brain text-emerald-400 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4">Decisões Cegas</h3>
+                    <p class="text-gray-400 leading-relaxed">Não saber seu "número" para 2026 é o maior risco estratégico que você pode correr hoje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 hero-title">Perguntas Frequentes</h2>
+            <div class="space-y-6">
+                <div class="glass p-6 rounded-2xl">
+                    <h4 class="text-lg font-bold mb-2">O diagnóstico é realmente gratuito?</h4>
+                    <p class="text-gray-400">Sim. Nosso objetivo é fornecer clareza inicial para que você entenda os riscos e oportunidades da reforma.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <h4 class="text-lg font-bold mb-2">Meus dados estão seguros?</h4>
+                    <p class="text-gray-400">Sim. Utilizamos criptografia de ponta a ponta e não compartilhamos seus dados financeiros com terceiros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-4 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex items-center gap-4">
+                <img src="/logo.png" alt="Rental Smart" class="h-12 w-auto opacity-50 grayscale hover:grayscale-0 transition-all">
+                <span class="text-xl font-bold hero-title">RentalSmart</span>
+            </div>
+            <p class="text-gray-500 text-sm">&copy; 2026 Alves Advocacia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
