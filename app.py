@@ -66,21 +66,22 @@ skill = LocadoraDecisionSkill()
 
 @app.route("/")
 def index():
-    # Serve a landing page premium
-    return send_from_directory('landing_page', 'index.html')
+    # Serve a landing page premium (templates/index.html)
+    return render_template("index.html")
 
 @app.route("/diagnostico")
 def diagnostico():
-    # Serve o simulador/aplicativo
-    return render_template("index.html")
+    # Serve o simulador/aplicativo (templates/simulator.html)
+    return render_template("simulator.html")
 
 @app.route("/logo.png")
 def logo():
-    return send_from_directory('landing_page', 'logo.png')
+    # Tenta servir da static primeiro, depois da landing_page
+    return send_from_directory('static', 'logo.png')
 
 @app.route("/favicon.ico")
 def favicon():
-    return send_from_directory('landing_page', 'favicon.ico')
+    return send_from_directory('static', 'favicon.ico')
 
 @app.route("/analyze", methods=["POST"])
 def analyze():

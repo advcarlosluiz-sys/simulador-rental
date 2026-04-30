@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENTAL SMART - Diagnóstico Tributário IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="/logo.png" alt="Rental Smart Logo" style="height: 50px; width: auto;">
+            </div>
+            <p class="subtitle">Inteligência Artificial & Estratégia Tributária para 2026/2027</p>
+        </header>
+
+        <main>
+            <section class="config-section">
+                <form id="analyzeForm">
+                    <div class="card glass">
+                        <h3><i class="icon"></i> Dados do Responsável & Empresa</h3>
+                        <div class="grid-2">
+                        <div class="form-group">
+                            <label for="razao_social">Razão Social</label>
+                            <input type="text" id="razao_social" placeholder="Nome Jurídico da Empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nome_responsavel">Nome do Responsável</label>
+                            <input type="text" id="nome_responsavel" placeholder="Seu Nome Completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail Corporativo</label>
+                            <input type="email" id="email" placeholder="email@empresa.com.br" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone / Whatsapp</label>
+                            <input type="text" id="telefone" placeholder="(11) 99999-9999" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco_completo">Endereço Completo</label>
+                        <input type="text" id="endereco_completo" placeholder="Rua, Número, Cidade, Estado">
+                    </div>
+                    </div>
+
+                    <div class="card glass mt-1">
+                        <div class="form-section">
+                            <h3><i class="fas fa-chart-line"></i> Dados Operacionais (DRE)</h3>
+                            <p class="subtitle">Informe valores anuais para uma simulação precisa.</p>
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label for="custo_manutencao_pecas">Peças e Manutenção (Anual)</label>
+                                    <input type="number" id="custo_manutencao_pecas" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="folha_pagamento_direta">Folha de Pagamento (Anual)</label>
+                                    <input type="number" id="folha_pagamento_direta" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="aluguel_despesas_fixas">Despesas Fixas (Anual)</label>
+                                    <input type="number" id="aluguel_despesas_fixas" value="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="depreciacao_ativos">Depreciação Ativos (Anual)</label>
+                                    <input type="number" id="depreciacao_ativos" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label for="faturamento_anual">Faturamento Anual (R$)</label>
+                                <input type="number" id="faturamento_anual" value="3200000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="investimento_anual_em_ativos">Inv. Anual Ativos (R$)</label>
+                                <input type="number" id="investimento_anual_em_ativos" value="450000" required>
+                            </div>
+                        </div>
+                        <div class="dual-slider">
+                            <label>Carteira: <span id="b2b_val">70</span>% B2B / <span id="b2c_val">30</span>% B2C</label>
+                            <input type="range" id="b2b_slider" min="0" max="100" value="70">
+                        </div>
+                        <div class="form-group">
+                            <label>% Clientes com Crédito</label>
+                            <input type="range" id="percentual_clientes_que_aproveitam_credito" min="0" max="100" value="55">
+                        </div>
+                        <button type="submit" class="btn-primary" id="submitBtn">GERAR DIAGNÓSTICO</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="results-section hidden" id="resultsArea">
+                <div class="dashboard-grid">
+                    <div class="card glass recommendation-card">
+                        <h2>Recomendação Ideal</h2>
+                        <div id="mainRecommendation" class="recommendation-badge">---</div>
+                        <p id="executiveSummary"></p>
+                    </div>
+                    <div class="card glass chart-card">
+                        <canvas id="rankingChart"></canvas>
+                    </div>
+                </div>
+                <div class="card glass ai-card">
+                    <div id="iaContent" class="markdown-body">Carregando análise...</div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 <strong>Alves Advocacia</strong></p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
