@@ -3,7 +3,7 @@ import json
 import csv
 import io
 from datetime import datetime
-from flask import Flask, render_template, request, jsonify, make_response
+from flask import Flask, render_template, request, jsonify, make_response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -66,7 +66,21 @@ skill = LocadoraDecisionSkill()
 
 @app.route("/")
 def index():
+    # Serve a landing page premium
+    return send_from_directory('landing_page', 'index.html')
+
+@app.route("/diagnostico")
+def diagnostico():
+    # Serve o simulador/aplicativo
     return render_template("index.html")
+
+@app.route("/logo.png")
+def logo():
+    return send_from_directory('landing_page', 'logo.png')
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory('landing_page', 'favicon.ico')
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
