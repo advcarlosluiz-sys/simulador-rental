@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Smart | Diagnóstico Tributário IA para Empresas de Locação</title>
+    <meta name="description" content="Simule riscos e oportunidades tributárias da sua empresa de rental para 2026/2027 com um diagnóstico inteligente e gratuito.">
+    
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        darkblue: {
+                            900: '#0B1120',
+                            800: '#111827',
+                            700: '#1F2937',
+                        },
+                        emerald: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                        },
+                        gold: {
+                            500: '#D4AF37',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1120; }
+        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(31,41,55,0.7) 0%, rgba(17,24,39,0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Subtle glow effects */
+        .glow-emerald {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+        .glow-emerald:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-darkblue-900 text-gray-100 font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 py-4 px-4 sm:px-6 lg:px-8 border-b border-gray-800/50 bg-darkblue-900/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.png" alt="Alves Advocacia" class="h-14 w-auto object-contain rounded">
+            </a>
+            <a href="https://wa.me/5511998274209" target="_blank" class="hidden sm:flex items-center gap-2 text-sm font-medium text-gray-300 hover:text-white transition-colors border border-gray-700 hover:border-gray-500 px-4 py-2 rounded-full">
+                <i class="fa-brands fa-whatsapp text-emerald-500"></i> Falar com Especialista
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <header class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-600/10 blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px]"></div>
+            <div class="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-indigo-600/10 blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+Cjwvc3ZnPg==')] opacity-30"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-emerald-500/30 text-emerald-400 text-sm font-medium mb-8 animate-fade-in-up">
+                <i class="fa-solid fa-microchip"></i>
+                <span>Diagnóstico Estratégico com Inteligência Artificial</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Descubra os <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">riscos e oportunidades tributárias</span> da sua empresa de rental para 2026/2027
+            </h1>
+            
+            <p class="mt-4 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Use um diagnóstico inteligente para entender como a reforma tributária pode impactar sua operação, seu caixa e sua estratégia de crescimento.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://simulador-rental.vercel.app/" class="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-semibold text-lg transition-all duration-300 glow-emerald transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    Acessar Diagnóstico Gratuito <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#como-funciona" class="w-full sm:w-auto px-8 py-4 glass hover:bg-white/5 text-gray-200 rounded-xl font-semibold text-lg transition-all duration-300 border border-gray-600 hover:border-gray-400 flex items-center justify-center gap-2">
+                    Entender como funciona
+                </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-400 text-sm border-t border-gray-800 pt-8">
+                <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-robot text-emerald-500"></i> Análise via IA</div>
+                <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-chart-line text-blue-500"></i> Projeções de Caixa</div>
+                <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-scale-balanced text-gold-500"></i> Regimes Tributários</div>
+                <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-shield-halved text-purple-500"></i> Diagnóstico Seguro</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Seção de Problema -->
+    <section class="py-24 bg-darkblue-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">O cenário mudou. Sua empresa está preparada?</h2>
+                <p class="text-xl text-gray-400 leading-relaxed">
+                    Empresas de locação estão diante de um novo cenário tributário. Margens apertadas, contratos recorrentes, créditos fiscais, regimes tributários e impactos da reforma podem alterar diretamente a rentabilidade da operação.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-red-500">
+                    <i class="fa-solid fa-circle-question text-red-400 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Incerteza sobre o Regime</h3>
+                    <p class="text-gray-400 text-sm">Dúvidas constantes sobre qual o melhor regime tributário para o momento atual e futuro da empresa.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-orange-500">
+                    <i class="fa-solid fa-money-bill-trend-up text-orange-400 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Impacto no Caixa</h3>
+                    <p class="text-gray-400 text-sm">Dificuldade estrutural para medir com precisão o impacto real das mudanças no fluxo de caixa.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-yellow-500">
+                    <i class="fa-solid fa-file-invoice-dollar text-yellow-400 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Risco de Pagar a Mais</h3>
+                    <p class="text-gray-400 text-sm">O perigo silencioso de pagar mais impostos do que o estritamente necessário por falta de planejamento.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500 lg:col-start-1 lg:col-end-3 xl:col-auto">
+                    <i class="fa-solid fa-signs-post text-blue-400 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">A Transição da Reforma</h3>
+                    <p class="text-gray-400 text-sm">Falta de clareza sobre as regras de transição da reforma tributária e como navegar por elas.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500 lg:col-start-3 lg:col-end-4 xl:col-auto">
+                    <i class="fa-solid fa-clock-rotate-left text-purple-400 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-semibold mb-2">Decisões Tardias</h3>
+                    <p class="text-gray-400 text-sm">A necessidade crítica de tomar decisões preventivas antes que o impacto apareça no resultado financeiro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Seção de Solução -->
+    <section class="py-24 bg-darkblue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-block px-4 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-semibold mb-4 border border-blue-500/20">A Solução</div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Um diagnóstico inteligente para apoiar decisões tributárias</h2>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        O Rental Smart combina dados operacionais, informações financeiras e critérios de maturidade da empresa para gerar uma visão inicial sobre riscos, oportunidades e próximos passos tributários.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span class="text-gray-300">Análise de Dados da empresa e Receita/Estrutura</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span class="text-gray-300">Avaliação de Indicadores financeiros e Regime atual</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span class="text-gray-300">Leitura de Maturidade e exposição a riscos fiscais</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span class="text-gray-300">Projeção dos Possíveis impactos da transição tributária</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span class="text-gray-300">Geração de Recomendações estratégicas personalizadas via IA</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 blur-3xl rounded-full"></div>
+                    <div class="glass-card rounded-2xl p-2 relative z-10 border border-gray-700/50 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-darkblue-800 rounded-xl p-6 border border-gray-700">
+                            <div class="flex items-center gap-3 mb-6 border-b border-gray-700 pb-4">
+                                <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Análise Estratégica IA</h4>
+                                    <p class="text-xs text-gray-400">Processando diagnóstico...</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="h-4 bg-gray-700 rounded w-3/4"></div>
+                                <div class="h-4 bg-gray-700 rounded w-full"></div>
+                                <div class="h-4 bg-gray-700 rounded w-5/6"></div>
+                                <div class="h-4 bg-gray-700 rounded w-4/6 mt-4"></div>
+                                <div class="h-10 bg-emerald-500/20 border border-emerald-500/30 rounded mt-6 flex items-center px-4">
+                                    <span class="text-emerald-400 text-sm font-medium">Recomendação: Migração Planejada para Lucro Real</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Seção Como Funciona -->
+    <section id="como-funciona" class="py-24 bg-darkblue-800 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Como Funciona o Diagnóstico</h2>
+                <p class="text-xl text-gray-400">Um processo simples, rápido e totalmente confidencial.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Passo 1 -->
+                <div class="relative">
+                    <div class="hidden lg:block absolute top-10 left-1/2 w-full h-[2px] bg-gray-700 -z-10"></div>
+                    <div class="glass-card rounded-2xl p-6 text-center h-full hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 mx-auto bg-darkblue-900 border-2 border-emerald-500 text-emerald-400 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-[0_0_15px_rgba(16,185,129,0.3)]">1</div>
+                        <h3 class="text-lg font-semibold mb-3">Informe seus Dados</h3>
+                        <p class="text-gray-400 text-sm">Insira os dados principais da sua operação de locação no simulador seguro.</p>
+                    </div>
+                </div>
+                <!-- Passo 2 -->
+                <div class="relative">
+                    <div class="hidden lg:block absolute top-10 left-1/2 w-full h-[2px] bg-gray-700 -z-10"></div>
+                    <div class="glass-card rounded-2xl p-6 text-center h-full hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 mx-auto bg-darkblue-900 border-2 border-blue-500 text-blue-400 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-[0_0_15px_rgba(59,130,246,0.3)]">2</div>
+                        <h3 class="text-lg font-semibold mb-3">Processamento IA</h3>
+                        <p class="text-gray-400 text-sm">O simulador avalia receita, custos, perfil da empresa e maturidade tributária em segundos.</p>
+                    </div>
+                </div>
+                <!-- Passo 3 -->
+                <div class="relative">
+                    <div class="hidden lg:block absolute top-10 left-1/2 w-full h-[2px] bg-gray-700 -z-10"></div>
+                    <div class="glass-card rounded-2xl p-6 text-center h-full hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 mx-auto bg-darkblue-900 border-2 border-purple-500 text-purple-400 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-[0_0_15px_rgba(168,85,247,0.3)]">3</div>
+                        <h3 class="text-lg font-semibold mb-3">Leitura Estratégica</h3>
+                        <p class="text-gray-400 text-sm">Você recebe na tela uma visão inicial detalhada dos riscos e oportunidades do seu negócio.</p>
+                    </div>
+                </div>
+                <!-- Passo 4 -->
+                <div class="relative">
+                    <div class="glass-card rounded-2xl p-6 text-center h-full hover:-translate-y-2 transition-transform duration-300">
+                        <div class="w-16 h-16 mx-auto bg-darkblue-900 border-2 border-gold-500 text-gold-500 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-[0_0_15px_rgba(212,175,55,0.3)]">4</div>
+                        <h3 class="text-lg font-semibold mb-3">Validação Humana</h3>
+                        <p class="text-gray-400 text-sm">Depois, você pode optar por validar o diagnóstico com uma consultoria jurídica especializada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Seção de Benefícios -->
+    <section class="py-24 bg-darkblue-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">O que você ganha ao fazer o diagnóstico</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Clareza Absoluta</h4>
+                        <p class="text-gray-400 text-sm">Mais clareza sobre o impacto tributário direto no resultado do seu negócio.</p>
+                    </div>
+                </div>
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Riscos Ocultos</h4>
+                        <p class="text-gray-400 text-sm">Identificação de riscos e gargalos que passam despercebidos na contabilidade tradicional.</p>
+                    </div>
+                </div>
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl">
+                        <i class="fa-solid fa-scale-unbalanced"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Apoio na Decisão</h4>
+                        <p class="text-gray-400 text-sm">Dados estruturados para apoiar a decisão sobre o melhor regime tributário a adotar.</p>
+                    </div>
+                </div>
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Planejamento 26/27</h4>
+                        <p class="text-gray-400 text-sm">Visão estratégica formatada especificamente para o planejamento do biênio 2026/2027.</p>
+                    </div>
+                </div>
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 text-xl">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Base para Especialistas</h4>
+                        <p class="text-gray-400 text-sm">Uma base inicial sólida para conversar com advogados e especialistas tributários.</p>
+                    </div>
+                </div>
+                <!-- Benefício -->
+                <div class="flex gap-4 items-start p-6 rounded-2xl bg-darkblue-800/50 border border-gray-800 hover:border-gray-600 transition-colors">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-xl">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-1">Economia de Tempo</h4>
+                        <p class="text-gray-400 text-sm">Economia drástica de tempo e recursos na fase de análise preliminar da empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA Intermediário -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-blue-900/40 z-0"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 z-0"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white drop-shadow-md">Sua empresa está preparada para o novo cenário tributário?</h2>
+            <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">Em poucos minutos, você pode ter uma visão inicial dos principais pontos de atenção da sua operação.</p>
+            <a href="https://simulador-rental.vercel.app/" class="inline-flex items-center gap-2 px-10 py-5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-xl transition-all duration-300 shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:shadow-[0_0_40px_rgba(16,185,129,0.6)] transform hover:scale-105">
+                Iniciar Diagnóstico Agora <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 8. Seção Consultoria -->
+    <section class="py-24 bg-darkblue-800 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-2/3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 text-gold-500 text-xs font-bold mb-4 uppercase tracking-wider">
+                        <i class="fa-solid fa-crown"></i> Próximo Passo
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Do diagnóstico à decisão estratégica</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Após preencher o simulador, sua empresa poderá usar o resultado como ponto de partida para uma análise mais profunda com especialistas. Isso permite validar premissas, revisar riscos e construir um plano tributário extremamente seguro e rentável.
+                    </p>
+                </div>
+                <div class="md:w-1/3 w-full flex justify-center md:justify-end">
+                    <a href="https://wa.me/5511998274209" target="_blank" class="w-full sm:w-auto text-center px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-green-500/25">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Validar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ Section -->
+    <section class="py-24 bg-darkblue-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Perguntas Frequentes</h2>
+                <p class="text-gray-400">Tire suas dúvidas sobre o funcionamento do simulador.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Pergunta 1 -->
+                <details class="group glass-card rounded-xl overflow-hidden" open>
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg hover:text-emerald-400 transition-colors">
+                        <span>O simulador substitui uma consultoria tributária?</span>
+                        <span class="transition group-open:rotate-180 text-gray-500">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 p-6 pt-0 border-t border-gray-800/50 mt-2 leading-relaxed">
+                        Não. Ele oferece uma análise inicial e informativa, que levanta pontos cegos da sua operação, mas os resultados devem sempre ser validados por especialistas jurídicos ou contábeis.
+                    </div>
+                </details>
+
+                <!-- Pergunta 2 -->
+                <details class="group glass-card rounded-xl overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg hover:text-emerald-400 transition-colors">
+                        <span>Para quem o diagnóstico é indicado?</span>
+                        <span class="transition group-open:rotate-180 text-gray-500">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 p-6 pt-0 border-t border-gray-800/50 mt-2 leading-relaxed">
+                        Para empresários, gestores financeiros, diretores e sócios de empresas de locação/rental (equipamentos, máquinas, ferramentas, etc.) que querem entender impactos tributários, riscos e oportunidades para os próximos anos.
+                    </div>
+                </details>
+
+                <!-- Pergunta 3 -->
+                <details class="group glass-card rounded-xl overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg hover:text-emerald-400 transition-colors">
+                        <span>Preciso ter conhecimento técnico profundo para usar?</span>
+                        <span class="transition group-open:rotate-180 text-gray-500">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 p-6 pt-0 border-t border-gray-800/50 mt-2 leading-relaxed">
+                        Não. O simulador foi pensado para empresários e tomadores de decisão, com linguagem prática, objetiva e formulários fáceis de preencher baseados na realidade do seu negócio.
+                    </div>
+                </details>
+
+                <!-- Pergunta 4 -->
+                <details class="group glass-card rounded-xl overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg hover:text-emerald-400 transition-colors">
+                        <span>O diagnóstico é gratuito?</span>
+                        <span class="transition group-open:rotate-180 text-gray-500">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 p-6 pt-0 border-t border-gray-800/50 mt-2 leading-relaxed">
+                        Sim, o acesso inicial ao simulador e a geração do diagnóstico base pela Inteligência Artificial são gratuitos.
+                    </div>
+                </details>
+
+                <!-- Pergunta 5 -->
+                <details class="group glass-card rounded-xl overflow-hidden">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-lg hover:text-emerald-400 transition-colors">
+                        <span>Quais dados preciso informar?</span>
+                        <span class="transition group-open:rotate-180 text-gray-500">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-400 p-6 pt-0 border-t border-gray-800/50 mt-2 leading-relaxed">
+                        Apenas dados básicos da empresa, estimativas de informações financeiras (como faturamento anual aproximado) e características operacionais gerais para enquadramento do perfil.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Aviso Jurídico Discreto -->
+    <section class="py-10 bg-darkblue-900 border-t border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-gray-500 mb-4">
+                <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <p class="text-sm text-gray-500 leading-relaxed mb-3">
+                Este diagnóstico tem finalidade puramente informativa e estratégica. <strong>Ele não substitui uma análise jurídica, contábil ou tributária individualizada.</strong> As recomendações geradas por Inteligência Artificial devem ser sempre validadas por profissionais especializados antes de qualquer tomada de decisão financeira ou fiscal.
+            </p>
+            <p class="text-sm text-gray-500 leading-relaxed">
+                O objetivo central do simulador é ajudar a sua empresa a identificar de forma rápida pontos de atenção ocultos e iniciar uma conversa muito mais qualificada sobre o seu planejamento tributário.
+            </p>
+        </div>
+    </section>
+
+    <!-- 10. Rodapé -->
+    <footer class="bg-[#050810] py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left flex flex-col items-center md:items-start gap-5">
+                <img src="logo.png" alt="Alves Advocacia" class="h-16 w-auto object-contain rounded">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-1">Rental Smart</h3>
+                    <p class="text-gray-500 text-sm">Diagnóstico Tributário IA para empresas de locação</p>
+                </div>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="https://simulador-rental.vercel.app/" class="text-gray-400 hover:text-emerald-400 transition-colors text-sm font-medium">Acessar Simulador</a>
+                <a href="https://wa.me/5511998274209" target="_blank" class="text-gray-400 hover:text-emerald-400 transition-colors text-sm font-medium">Falar com Especialista</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-gray-800/50 text-center md:text-left flex flex-col md:flex-row justify-between text-xs text-gray-600">
+            <p>&copy; 2026 Alves Advocacia - Inteligência Tributária Estratégica.</p>
+            <p class="mt-2 md:mt-0">Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script to handle accordion exclusive open -->
+    <script>
+        const details = document.querySelectorAll("details");
+        details.forEach((targetDetail) => {
+            targetDetail.addEventListener("click", () => {
+                details.forEach((detail) => {
+                    if (detail !== targetDetail) {
+                        detail.removeAttribute("open");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
